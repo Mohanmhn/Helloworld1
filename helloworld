@@ -14,7 +14,7 @@ pipeline {
         }
         stage('deploy docker') {
             steps {
-                sh 'docker run -d devops:test -p 8083:80'
+                sh 'docker run -d -p 8083:80 devops:test'
             }
         }
     }
