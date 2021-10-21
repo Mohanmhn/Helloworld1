@@ -2,9 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('verify html') {
             steps {
                 sh 'cat index.html'
+            }
+        }
+        stage('build docker') {
+            steps {
+                sh 'docker build -t devops:test .'
+            }
+        }
+        stage('deploy docker') {
+            steps {
+                sh 'docker run -d devops:test -p 8083:80'
             }
         }
     }
